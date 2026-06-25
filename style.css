@@ -6,6 +6,7 @@
 
 /* ---- DARK THEME (default) ---- */
 :root {
+  --footer-bg: var(--bg);
   --bg: #080810;
   --bg2: #0e0e1a;
   --surface: #131320;
@@ -39,7 +40,8 @@
   --text-dim: #9590b8;
   --border: rgba(109,40,217,0.18);
   --border-dim: rgba(109,40,217,0.09);
-  --nav-bg: rgba(245,244,255,0.92);
+  --nav-bg: rgba(224,216,255,0.96);
+  --footer-bg: #ddd5f8;
   --shadow-card: 0 4px 30px rgba(109,40,217,0.08);
 }
 
@@ -886,7 +888,7 @@ ul { list-style: none; }
 .contact-icon { font-size: 1.3rem; }
 
 /* ---- FOOTER ---- */
-.footer { background: var(--bg); border-top: 1px solid var(--border-dim); padding: 36px 0; transition: background 0.4s; }
+.footer { background: var(--footer-bg, var(--bg)); border-top: 1px solid var(--border-dim); padding: 36px 0; transition: background 0.4s; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; }
 .footer p { font-size: 0.85rem; color: var(--text-dim); }
 .back-to-top { font-size: 0.85rem; font-weight: 600; color: var(--violet-light); transition: color 0.2s; }
