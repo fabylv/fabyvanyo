@@ -9,6 +9,10 @@ const themeIcon = themeToggle?.querySelector('.theme-icon');
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   if (themeIcon) themeIcon.textContent = theme === 'light' ? '☀️' : '🌙';
+  if (themeToggle) {
+    themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    themeToggle.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+  }
 }
 
 // Load saved preference or default dark
@@ -26,9 +30,17 @@ themeToggle?.addEventListener('click', () => {
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-toggle?.addEventListener('click', () => navLinks?.classList.toggle('open'));
+toggle?.addEventListener('click', () => {
+  const isOpen = navLinks?.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+});
 navLinks?.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation menu');
+  });
 });
 
 /* ---- ACTIVE NAV ON SCROLL ---- */

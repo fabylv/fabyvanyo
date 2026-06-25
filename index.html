@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://fabyvanyo.com" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph (Facebook, LinkedIn) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://fabyvanyo.com" />
   <meta property="og:title" content="Faby Vanyo — Engineer, Founder & AI Product Builder" />
@@ -20,6 +20,7 @@
   <meta property="og:image" content="https://fabyvanyo.com/images/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Faby Vanyo — Engineer, Founder & AI Product Builder" />
   <meta property="og:site_name" content="Faby Vanyo" />
   <meta property="og:locale" content="en_US" />
 
@@ -29,6 +30,7 @@
   <meta name="twitter:title" content="Faby Vanyo — Engineer, Founder & AI Product Builder" />
   <meta name="twitter:description" content="Senior Front-End Engineer and AI Product Builder with 20+ years of experience. Founder of FabVista Studio, FabWhispers, and Fab Digital Studio." />
   <meta name="twitter:image" content="https://fabyvanyo.com/images/og-image.jpg" />
+  <meta name="twitter:image:alt" content="Faby Vanyo logo on a dark violet background" />
 
   <!-- Schema.org Person -->
   <script type="application/ld+json">
@@ -64,13 +66,16 @@
 </head>
 <body>
 
+  <!-- Skip Navigation (accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- NAV -->
-  <header class="nav-header">
+  <header class="nav-header" role="banner">
     <div class="container nav-inner">
-      <a href="#" class="logo">
-        <img src="images/fv-logo.svg" alt="Faby Vanyo" class="logo-img" />
+      <a href="#top" class="logo" aria-label="Faby Vanyo — home">
+        <img src="images/fv-logo.svg" alt="Faby Vanyo" class="logo-img" width="160" height="44" />
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
@@ -78,251 +83,253 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark mode">
-          <span class="theme-icon">🌙</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
         </button>
-        <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+        <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <p class="hero-eyebrow">Building products at the intersection of technology, creativity, and intuition.</p>
-        <h1>Faby <span class="accent">Vanyo</span></h1>
-        <p class="hero-roles">Engineer &bull; Founder &bull; Author &bull; Creator</p>
-        <p class="hero-sub">20+ years building high-performance web applications, digital products, and AI-powered experiences — from Fortune 500 brands to self-launched startups.</p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-outline">Get In Touch</a>
-        </div>
-      </div>
-      <div class="hero-badge">
-        <div class="badge-ring">
-          <span>20+</span>
-          <small>years of<br/>experience</small>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main id="main-content">
 
-  <!-- ABOUT -->
-  <section class="section about" id="about">
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <div class="section-title-bar"></div>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>I'm a Senior Front-End Engineer with over two decades of experience designing and developing web applications, digital products, and user-focused experiences across <strong>healthcare, e-commerce, and entrepreneurial ventures</strong>.</p>
-          <p>My expertise spans modern front-end development, responsive design, accessibility, API integrations, and scalable UI architecture. More recently I've expanded into <strong>AI-powered product development</strong> — building applications that leverage generative AI, prompt engineering, and automated workflows.</p>
-          <p>I'm also the founder of multiple digital ventures, managing the complete product lifecycle from design and development through deployment, SEO, marketing, and customer delivery.</p>
-          <div class="about-langs">
-            <span class="tag">English (Fluent)</span>
-            <span class="tag">Spanish (Native)</span>
+    <!-- HERO -->
+    <section class="hero" id="top" aria-label="Introduction">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Building products at the intersection of technology, creativity, and intuition.</p>
+          <h1 id="hero-heading">Faby <span class="accent">Vanyo</span></h1>
+          <p class="hero-roles" aria-label="Roles: Engineer, Founder, Author, Creator">Engineer &bull; Founder &bull; Author &bull; Creator</p>
+          <p class="hero-sub">20+ years building high-performance web applications, digital products, and AI-powered experiences — from Fortune 500 brands to self-launched startups.</p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Get In Touch</a>
           </div>
         </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <span class="stat-num">20+</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">3+</span>
-            <span class="stat-label">Startups Founded</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">50+</span>
-            <span class="stat-label">Projects Delivered</span>
+        <div class="hero-badge" aria-hidden="true">
+          <div class="badge-ring">
+            <span>20+</span>
+            <small>years of<br/>experience</small>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJECTS -->
-  <section class="section projects dark-section" id="projects">
-    <div class="container">
-      <h2 class="section-title light">Things I've Built ✨</h2>
-      <div class="section-title-bar"></div>
-      <p class="section-sub light">Independent work, AI products, and a little bit of magic</p>
-      <div class="projects-grid">
-
-        <div class="project-card featured">
-          <div class="project-screenshot">
-            <img src="images/fabvista.jpg" alt="FabVista Studio screenshot" loading="lazy" />
-            <a href="https://fabvistastudio.com" target="_blank" rel="noopener" class="screenshot-overlay">Visit Site →</a>
+    <!-- ABOUT -->
+    <section class="section about" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 class="section-title" id="about-heading">About Me</h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a Senior Front-End Engineer with over two decades of experience designing and developing web applications, digital products, and user-focused experiences across <strong>healthcare, e-commerce, and entrepreneurial ventures</strong>.</p>
+            <p>My expertise spans modern front-end development, responsive design, accessibility, API integrations, and scalable UI architecture. More recently I've expanded into <strong>AI-powered product development</strong> — building applications that leverage generative AI, prompt engineering, and automated workflows.</p>
+            <p>I'm also the founder of multiple digital ventures, managing the complete product lifecycle from design and development through deployment, SEO, marketing, and customer delivery.</p>
+            <div class="about-langs" aria-label="Languages">
+              <span class="tag">English (Fluent)</span>
+              <span class="tag">Spanish (Native)</span>
+            </div>
           </div>
-          <div class="project-body">
-            <div class="project-icon">🏠</div>
-            <h3>FabVista Studio</h3>
-            <p>An AI-powered virtual staging platform that transforms real property photos into beautifully staged interiors. Built and launched entirely from scratch — from design and development to deployment and marketing.</p>
-            <a href="https://fabvistastudio.com" target="_blank" rel="noopener" class="project-link">Visit Site →</a>
+          <div class="about-stats" aria-label="Key stats">
+            <div class="stat-card">
+              <span class="stat-num" aria-hidden="true">20+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num" aria-hidden="true">3+</span>
+              <span class="stat-label">Startups Founded</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num" aria-hidden="true">50+</span>
+              <span class="stat-label">Projects Delivered</span>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="project-card">
-          <div class="project-screenshot">
-            <img src="images/fabdigital.jpg" alt="Fab Digital Studio screenshot" loading="lazy" />
-            <a href="https://fabdigitalstudio.com" target="_blank" rel="noopener" class="screenshot-overlay">Visit Site →</a>
-          </div>
-          <div class="project-body">
-            <div class="project-icon">✨</div>
-            <h3>Fab Digital Studio</h3>
-            <p>A digital studio offering AI-assisted web apps, recipe generation tools, and content automation products. Managed the full lifecycle — design, development, launch, and delivery.</p>
-            <a href="https://fabdigitalstudio.com" target="_blank" rel="noopener" class="project-link">Visit Site →</a>
-          </div>
-        </div>
+    <!-- PROJECTS -->
+    <section class="section projects dark-section" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 class="section-title light" id="projects-heading">Things I've Built <span aria-hidden="true">✨</span></h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+        <p class="section-sub light">Independent work, AI products, and a little bit of magic</p>
+        <div class="projects-grid">
 
-        <div class="project-card project-card--phone">
-          <div class="project-body">
-            <div class="project-icon">🌙</div>
-            <h3>FabWhispers</h3>
-            <p>A spiritual daily affirmation app with 51 whispers across 7 themes — Purpose, Clarity, Manifestation, Healing, Release, Love, and Gratitude. Inspired by the book <em>Whispers from the Universe</em>. Installable on any phone, works offline.</p>
-            <a href="https://fabwhispers.com" target="_blank" rel="noopener" class="project-link">Visit Site →</a>
-          </div>
-          <div class="phone-mockup">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <img src="images/fabwhispers-mobile.jpg" alt="FabWhispers app" loading="lazy" />
+          <article class="project-card featured">
+            <div class="project-screenshot" aria-hidden="true">
+              <img src="images/fabvista.jpg" alt="" role="presentation" loading="lazy" width="1200" height="600" />
+              <a href="https://fabvistastudio.com" target="_blank" rel="noopener noreferrer" class="screenshot-overlay" tabindex="-1" aria-hidden="true">Visit Site</a>
+            </div>
+            <div class="project-body">
+              <div class="project-icon" aria-hidden="true">🏠</div>
+              <h3>FabVista Studio</h3>
+              <p>An AI-powered virtual staging platform that transforms real property photos into beautifully staged interiors. Built and launched entirely from scratch — from design and development to deployment and marketing.</p>
+              <a href="https://fabvistastudio.com" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit FabVista Studio website (opens in new tab)">Visit Site <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-screenshot" aria-hidden="true">
+              <img src="images/fabdigital.jpg" alt="" role="presentation" loading="lazy" width="1200" height="600" />
+              <a href="https://fabdigitalstudio.com" target="_blank" rel="noopener noreferrer" class="screenshot-overlay" tabindex="-1" aria-hidden="true">Visit Site</a>
+            </div>
+            <div class="project-body">
+              <div class="project-icon" aria-hidden="true">✨</div>
+              <h3>Fab Digital Studio</h3>
+              <p>A digital studio offering AI-assisted web apps, recipe generation tools, and content automation products. Managed the full lifecycle — design, development, launch, and delivery.</p>
+              <a href="https://fabdigitalstudio.com" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit Fab Digital Studio website (opens in new tab)">Visit Site <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="project-card project-card--phone">
+            <div class="project-body">
+              <div class="project-icon" aria-hidden="true">🌙</div>
+              <h3>FabWhispers</h3>
+              <p>A spiritual daily affirmation app with 51 whispers across 7 themes — Purpose, Clarity, Manifestation, Healing, Release, Love, and Gratitude. Inspired by the book <em>Whispers from the Universe</em>. Installable on any phone, works offline.</p>
+              <a href="https://fabwhispers.com" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Visit FabWhispers website (opens in new tab)">Visit Site <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="phone-mockup" aria-hidden="true">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <img src="images/fabwhispers-mobile.jpg" alt="" role="presentation" loading="lazy" width="390" height="844" />
+                </div>
+                <div class="phone-home-bar"></div>
               </div>
-              <div class="phone-home-bar"></div>
+            </div>
+          </article>
+
+          <article class="project-card project-card--book">
+            <div class="book-mockup" aria-hidden="true">
+              <div class="book-cover">
+                <img src="images/book-cover.jpg" alt="" role="presentation" loading="lazy" width="400" height="600" />
+                <div class="book-spine"></div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-icon" aria-hidden="true">📖</div>
+              <h3>Whispers from the Universe</h3>
+              <p>Published author — <em>Whispers from the Universe: A Journey from Science to Soul</em> (2025). A spiritual memoir about moving from a science-driven mindset to embracing intuition, synchronicities, and signs from the universe.</p>
+              <a href="https://www.amazon.com/Whispers-Universe-Journey-Science-Soul/dp/B0" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Whispers from the Universe on Amazon (opens in new tab)">View on Amazon <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section work" id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <h2 class="section-title" id="experience-heading">Where I've Worked</h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+        <div class="exp-blocks">
+
+          <div class="exp-block">
+            <div class="exp-icon" aria-hidden="true">💊</div>
+            <div>
+              <h3>Healthcare &amp; Pharma</h3>
+              <p>Built and maintained HIPAA-compliant, patient-facing web applications for pharmaceutical and mental health companies. Focused on accessibility, performance, and secure integrations — working closely with UX, QA, and back-end teams in Agile environments.</p>
+            </div>
+          </div>
+
+          <div class="exp-block">
+            <div class="exp-icon" aria-hidden="true">🛍️</div>
+            <div>
+              <h3>E-Commerce &amp; Retail Brands</h3>
+              <p>Led front-end development for high-traffic e-commerce platforms and global beauty brands including Wella Professionals. Drove mobile-first strategies that significantly improved page speed and user experience at scale.</p>
+            </div>
+          </div>
+
+          <div class="exp-block">
+            <div class="exp-icon" aria-hidden="true">🏢</div>
+            <div>
+              <h3>Enterprise &amp; Agency</h3>
+              <p>Over a decade of agency and enterprise work in Los Angeles, building web experiences for major brands like GM, Citigroup, Dell, and Cal Fed — from content management systems to full front-end architecture.</p>
+            </div>
+          </div>
+
+          <div class="exp-block">
+            <div class="exp-icon" aria-hidden="true">🚀</div>
+            <div>
+              <h3>Independent &amp; AI Products</h3>
+              <p>Since 2025, building and launching my own AI-powered digital products as founder and sole developer — from concept and design through deployment, marketing, and ongoing growth.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW -->
+    <section class="section now dark-section" id="now" aria-labelledby="now-heading">
+      <div class="container">
+        <h2 class="section-title light" id="now-heading">What I'm Building Right Now</h2>
+        <div class="section-title-bar" aria-hidden="true"></div>
+        <div class="now-grid">
+          <div class="now-card">
+            <span class="now-dot" aria-hidden="true"></span>
+            <div>
+              <h3>Growing FabVista Studio</h3>
+              <p>Expanding the AI virtual staging platform — new features, more real estate clients, and smarter staging results.</p>
+            </div>
+          </div>
+          <div class="now-card">
+            <span class="now-dot" aria-hidden="true"></span>
+            <div>
+              <h3>Building AI-Powered Micro-Products</h3>
+              <p>Designing and shipping small, focused tools that solve real problems using generative AI — fast and lean.</p>
+            </div>
+          </div>
+          <div class="now-card">
+            <span class="now-dot" aria-hidden="true"></span>
+            <div>
+              <h3>Writing the Next Whispers Book</h3>
+              <p>The journey continues — more stories, more signs, more soul. The universe still has plenty to say.</p>
+            </div>
+          </div>
+          <div class="now-card">
+            <span class="now-dot" aria-hidden="true"></span>
+            <div>
+              <h3>Exploring AI &amp; Creativity</h3>
+              <p>Pushing the edge of what's possible when human intuition meets AI — in design, content, and product thinking.</p>
             </div>
           </div>
         </div>
-
-        <div class="project-card project-card--book">
-          <div class="book-mockup">
-            <div class="book-cover">
-              <img src="images/book-cover.jpg" alt="Whispers from the Universe book cover" loading="lazy" />
-              <div class="book-spine"></div>
-            </div>
-          </div>
-          <div class="project-body">
-            <div class="project-icon">📖</div>
-            <h3>Whispers from the Universe</h3>
-            <p>Published author — <em>Whispers from the Universe: A Journey from Science to Soul</em> (2025). A spiritual memoir about moving from a science-driven mindset to embracing intuition, synchronicities, and signs from the universe.</p>
-            <a href="https://www.amazon.com/Whispers-Universe-Journey-Science-Soul/dp/B0" target="_blank" rel="noopener" class="project-link">View on Amazon →</a>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- EXPERIENCE -->
-  <section class="section work" id="experience">
-    <div class="container">
-      <h2 class="section-title">Where I've Worked</h2>
-      <div class="section-title-bar"></div>
-      <div class="exp-blocks">
-
-        <div class="exp-block">
-          <div class="exp-icon">💊</div>
-          <div>
-            <h3>Healthcare &amp; Pharma</h3>
-            <p>Built and maintained HIPAA-compliant, patient-facing web applications for pharmaceutical and mental health companies. Focused on accessibility, performance, and secure integrations — working closely with UX, QA, and back-end teams in Agile environments.</p>
-          </div>
-        </div>
-
-        <div class="exp-block">
-          <div class="exp-icon">🛍️</div>
-          <div>
-            <h3>E-Commerce &amp; Retail Brands</h3>
-            <p>Led front-end development for high-traffic e-commerce platforms and global beauty brands including Wella Professionals. Drove mobile-first strategies that significantly improved page speed and user experience at scale.</p>
-          </div>
-        </div>
-
-        <div class="exp-block">
-          <div class="exp-icon">🏢</div>
-          <div>
-            <h3>Enterprise &amp; Agency</h3>
-            <p>Over a decade of agency and enterprise work in Los Angeles, building web experiences for major brands like GM, Citigroup, Dell, and Cal Fed — from content management systems to full front-end architecture.</p>
-          </div>
-        </div>
-
-        <div class="exp-block">
-          <div class="exp-icon">🚀</div>
-          <div>
-            <h3>Independent &amp; AI Products</h3>
-            <p>Since 2025, building and launching my own AI-powered digital products as founder and sole developer — from concept and design through deployment, marketing, and ongoing growth.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- NOW -->
-  <section class="section now dark-section" id="now">
-    <div class="container">
-      <h2 class="section-title light">What I'm Building Right Now</h2>
-      <div class="section-title-bar"></div>
-      <div class="now-grid">
-        <div class="now-card">
-          <span class="now-dot"></span>
-          <div>
-            <h4>Growing FabVista Studio</h4>
-            <p>Expanding the AI virtual staging platform — new features, more real estate clients, and smarter staging results.</p>
-          </div>
-        </div>
-        <div class="now-card">
-          <span class="now-dot"></span>
-          <div>
-            <h4>Building AI-Powered Micro-Products</h4>
-            <p>Designing and shipping small, focused tools that solve real problems using generative AI — fast and lean.</p>
-          </div>
-        </div>
-        <div class="now-card">
-          <span class="now-dot"></span>
-          <div>
-            <h4>Writing the Next Whispers Book</h4>
-            <p>The journey continues — more stories, more signs, more soul. The universe still has plenty to say.</p>
-          </div>
-        </div>
-        <div class="now-card">
-          <span class="now-dot"></span>
-          <div>
-            <h4>Exploring AI &amp; Creativity</h4>
-            <p>Pushing the edge of what’s possible when human intuition meets AI — in design, content, and product thinking.</p>
-          </div>
+    <!-- CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container contact-inner">
+        <h2 class="section-title" id="contact-heading">Let's Make Something Great <span aria-hidden="true">🚀</span></h2>
+        <div class="section-title-bar center" aria-hidden="true"></div>
+        <p class="section-sub">Open to senior front-end roles, AI product work, and creative collaborations.</p>
+        <div class="contact-links">
+          <a href="mailto:fabylv@gmail.com" class="contact-card" aria-label="Send email to Faby Vanyo">
+            <span class="contact-icon" aria-hidden="true">✉️</span>
+            <span>fabylv@gmail.com</span>
+          </a>
+          <a href="tel:+18184005697" class="contact-card" aria-label="Call Faby Vanyo at 818-400-5697">
+            <span class="contact-icon" aria-hidden="true">📞</span>
+            <span>818-400-5697</span>
+          </a>
+          <a href="https://linkedin.com/in/fabyvanyo" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Visit Faby Vanyo's LinkedIn profile (opens in new tab)">
+            <span class="contact-icon" aria-hidden="true">💼</span>
+            <span>linkedin.com/in/fabyvanyo</span>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <div class="container contact-inner">
-      <h2 class="section-title">Let's Make Something Great 🚀</h2>
-      <div class="section-title-bar center"></div>
-      <p class="section-sub">Open to senior front-end roles, AI product work, and creative collaborations.</p>
-      <div class="contact-links">
-        <a href="mailto:fabylv@gmail.com" class="contact-card">
-          <span class="contact-icon">✉️</span>
-          <span>fabylv@gmail.com</span>
-        </a>
-        <a href="tel:818-400-5697" class="contact-card">
-          <span class="contact-icon">📞</span>
-          <span>818-400-5697</span>
-        </a>
-        <a href="https://linkedin.com/in/fabyvanyo" target="_blank" rel="noopener" class="contact-card">
-          <span class="contact-icon">💼</span>
-          <span>linkedin.com/in/fabyvanyo</span>
-        </a>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container footer-inner">
-      <p>© 2026 Faby Vanyo — built with ♥, ✨, and way too much coffee.</p>
-      <a href="#top" class="back-to-top">↑ Back to top</a>
+      <p>© 2026 Faby Vanyo — built with <span aria-hidden="true">♥, ✨,</span><span class="sr-only">love and care,</span> and way too much coffee.</p>
+      <a href="#top" class="back-to-top" aria-label="Back to top of page"><span aria-hidden="true">↑</span> Back to top</a>
     </div>
   </footer>
 
