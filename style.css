@@ -617,6 +617,65 @@ ul { list-style: none; }
   .phone-frame { width: 110px; }
 }
 
+/* Book mockup card */
+.project-card--book {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+}
+
+.project-card--book .project-body { flex: 1; min-width: 0; }
+
+.book-mockup {
+  flex-shrink: 0;
+  perspective: 600px;
+  padding: 10px 16px 10px 6px;
+}
+
+.book-cover {
+  position: relative;
+  width: 100px;
+  transform: rotateY(-18deg);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 2px 6px 6px 2px;
+  box-shadow:
+    4px 6px 20px rgba(0,0,0,0.5),
+    -2px 0 6px rgba(0,0,0,0.3);
+}
+
+.project-card:hover .book-cover {
+  transform: rotateY(-8deg) translateY(-4px);
+  box-shadow:
+    8px 12px 32px rgba(0,0,0,0.5),
+    0 0 30px rgba(245,158,11,0.2),
+    -4px 0 8px rgba(0,0,0,0.3);
+}
+
+.book-cover img {
+  display: block;
+  width: 100%;
+  border-radius: 2px 5px 5px 2px;
+}
+
+.book-spine {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(to right, #1a1040, #2d1b69);
+  border-radius: 2px 0 0 2px;
+  transform: rotateY(90deg);
+  transform-origin: right center;
+}
+
+@media (max-width: 640px) {
+  .project-card--book { flex-direction: column; }
+  .book-cover { width: 80px; }
+}
+
 .project-icon {
   font-size: 2.6rem;
   margin-bottom: 20px;
