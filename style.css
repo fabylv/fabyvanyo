@@ -68,11 +68,11 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--nav-bg);
+  background: rgba(8,8,16,0.93);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-dim);
-  transition: background 0.4s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: none;
 }
 
 .nav-inner {
@@ -886,9 +886,9 @@ ul { list-style: none; }
 .contact-icon { font-size: 1.3rem; }
 
 /* ---- FOOTER ---- */
-.footer { background: var(--footer-bg, var(--bg)); border-top: 1px solid var(--border-dim); padding: 36px 0; transition: background 0.4s; }
+.footer { background: #080810; border-top: 1px solid rgba(255,255,255,0.07); padding: 36px 0; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; }
-.footer p { font-size: 0.85rem; color: var(--text-dim); }
+.footer p { font-size: 0.85rem; color: #4a4a70; }
 .back-to-top { font-size: 0.85rem; font-weight: 600; color: var(--violet-light); transition: color 0.2s; }
 .back-to-top:hover { color: var(--pink-light); }
 
