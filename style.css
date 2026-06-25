@@ -477,6 +477,48 @@ ul { list-style: none; }
   background: linear-gradient(135deg, var(--surface) 60%, rgba(139,92,246,0.06) 100%);
 }
 
+/* Project screenshot */
+.project-screenshot {
+  position: relative;
+  width: calc(100% + 72px);
+  margin: -36px -36px 28px -36px;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  aspect-ratio: 16/8;
+}
+
+.project-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-screenshot img { transform: scale(1.04); }
+
+.screenshot-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(8,8,16,0.85) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover .screenshot-overlay { opacity: 1; }
+.project-body { display: flex; flex-direction: column; }
+.project-card.no-screenshot { display: flex; align-items: stretch; }
+.project-card.no-screenshot .project-body { justify-content: space-between; }
+
 .project-icon {
   font-size: 2.6rem;
   margin-bottom: 20px;
