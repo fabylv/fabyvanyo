@@ -1,5 +1,5 @@
 // ============================================================
-// FABY VANYO — Portfolio JS
+// FABY VANYO — Portfolio JS · Vibrant Edition
 // ============================================================
 
 // Mobile nav toggle
@@ -7,41 +7,32 @@ const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
 if (toggle && navLinks) {
-  toggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  // Close on link click
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-    });
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
   });
 }
 
-// Active nav highlight on scroll
-const sections = document.querySelectorAll('section[id], div[id="top"]');
+// Smooth active nav highlight
+const sections = document.querySelectorAll('section[id]');
 const navItems = document.querySelectorAll('.nav-links a');
 
-const observer = new IntersectionObserver((entries) => {
+const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
       navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === `#${id}`) {
-          item.classList.add('active');
-        }
+        item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
       });
     }
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
 
-sections.forEach(s => observer.observe(s));
+sections.forEach(s => sectionObserver.observe(s));
 
-// Fade-in on scroll
-const fadeEls = document.querySelectorAll(
-  '.stat-card, .project-card, .timeline-item, .skill-group, .edu-card, .contact-card'
+// Scroll fade-in with stagger
+const fadeTargets = document.querySelectorAll(
+  '.stat-card, .project-card, .exp-block, .edu-card, .contact-card'
 );
 
 const fadeObserver = new IntersectionObserver((entries) => {
@@ -51,24 +42,39 @@ const fadeObserver = new IntersectionObserver((entries) => {
       fadeObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
-fadeEls.forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  fadeObserver.observe(el);
-});
-
-// Add the .visible class definition inline via JS
-const style = document.createElement('style');
-style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
-document.head.appendChild(style);
-
-// Stagger children
-document.querySelectorAll('.about-stats, .projects-grid, .skills-grid, .edu-grid').forEach(container => {
-  const children = container.querySelectorAll('.stat-card, .project-card, .skill-group, .edu-card');
-  children.forEach((child, i) => {
-    child.style.transitionDelay = `${i * 0.07}s`;
+// Apply stagger delay per grid group
+document.querySelectorAll('.about-stats, .projects-grid, .exp-blocks, .edu-grid, .contact-links').forEach(grid => {
+  grid.querySelectorAll('.stat-card, .project-card, .exp-block, .edu-card, .contact-card').forEach((el, i) => {
+    el.classList.add('fade-in');
+    el.style.transitionDelay = `${i * 80}ms`;
+    fadeObserver.observe(el);
   });
 });
+
+// Hero text cascade
+document.querySelectorAll('.hero-eyebrow, .hero-text h1, .hero-sub, .hero-cta, .hero-badge').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`;
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 100);
+  });
+});
+
+// Cursor glow on project cards (desktop only)
+if (window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    });
+  });
+}
