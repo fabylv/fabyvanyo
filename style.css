@@ -83,14 +83,23 @@ ul { list-style: none; }
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--violet-light), var(--pink-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.logo:hover .logo-img {
+  opacity: 0.85;
+  transform: scale(1.03);
 }
 
 .nav-links { display: flex; gap: 36px; }
