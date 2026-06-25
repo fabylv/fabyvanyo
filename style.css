@@ -747,6 +747,86 @@ ul { list-style: none; }
 .exp-block h3 { font-size: 1.08rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
 .exp-block p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; }
 
+/* ---- NOW ---- */
+.now-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.now-card {
+  background: var(--surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 20px;
+  padding: 28px 28px 28px 24px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: all 0.35s;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.now-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(139,92,246,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.now-card:hover {
+  border-color: var(--border);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(139,92,246,0.12);
+}
+.now-card:hover::after { opacity: 1; }
+
+.now-dot {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--violet-light);
+  margin-top: 5px;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.2);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(139,92,246,0.2); }
+  50% { box-shadow: 0 0 0 7px rgba(139,92,246,0.08); }
+}
+
+.now-card:nth-child(2) .now-dot { background: var(--pink-light); box-shadow: 0 0 0 3px rgba(236,72,153,0.2); animation-delay: 0.4s; }
+.now-card:nth-child(3) .now-dot { background: var(--gold-light); box-shadow: 0 0 0 3px rgba(245,158,11,0.2); animation-delay: 0.8s; }
+.now-card:nth-child(4) .now-dot { background: #6ee7b7; box-shadow: 0 0 0 3px rgba(16,185,129,0.2); animation-delay: 1.2s; }
+
+.now-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.now-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .now-grid { grid-template-columns: 1fr; }
+}
+
 /* ---- CONTACT ---- */
 .contact-inner { text-align: center; }
 
