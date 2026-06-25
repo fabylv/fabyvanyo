@@ -1,23 +1,41 @@
 // ============================================================
-// FABY VANYO — Portfolio JS · Vibrant Edition
+// FABY VANYO — Portfolio JS
 // ============================================================
 
-// Mobile nav toggle
+/* ---- THEME TOGGLE ---- */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle?.querySelector('.theme-icon');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  if (themeIcon) themeIcon.textContent = theme === 'light' ? '☀️' : '🌙';
+}
+
+// Load saved preference or default dark
+const savedTheme = localStorage.getItem('fv-theme') || 'dark';
+applyTheme(savedTheme);
+
+themeToggle?.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('fv-theme', next);
+  applyTheme(next);
+});
+
+/* ---- MOBILE NAV ---- */
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-if (toggle && navLinks) {
-  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
+toggle?.addEventListener('click', () => navLinks?.classList.toggle('open'));
+navLinks?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
 
-// Smooth active nav highlight
+/* ---- ACTIVE NAV ON SCROLL ---- */
 const sections = document.querySelectorAll('section[id]');
 const navItems = document.querySelectorAll('.nav-links a');
 
-const sectionObserver = new IntersectionObserver((entries) => {
+new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
@@ -26,55 +44,87 @@ const sectionObserver = new IntersectionObserver((entries) => {
       });
     }
   });
-}, { rootMargin: '-40% 0px -55% 0px' });
+}, { rootMargin: '-40% 0px -55% 0px' }).observe(...sections.length ? sections : [document.body]);
 
-sections.forEach(s => sectionObserver.observe(s));
-
-// Scroll fade-in with stagger
-const fadeTargets = document.querySelectorAll(
-  '.stat-card, .project-card, .exp-block, .edu-card, .contact-card'
-);
-
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target);
-    }
+/* ---- SCROLL ANIMATIONS ---- */
+// Mark elements with .anim class + optional direction
+function setupAnimations() {
+  // Hero cascade
+  const heroParts = document.querySelectorAll('.hero-eyebrow, .hero-text h1, .hero-sub, .hero-cta, .hero-badge');
+  heroParts.forEach((el, i) => {
+    el.classList.add('anim');
+    el.style.transitionDelay = `${i * 0.13}s`;
+    // Trigger after a tick
+    requestAnimationFrame(() => setTimeout(() => el.classList.add('visible'), 80));
   });
-}, { threshold: 0.08 });
 
-// Apply stagger delay per grid group
-document.querySelectorAll('.about-stats, .projects-grid, .exp-blocks, .edu-grid, .contact-links').forEach(grid => {
-  grid.querySelectorAll('.stat-card, .project-card, .exp-block, .edu-card, .contact-card').forEach((el, i) => {
-    el.classList.add('fade-in');
-    el.style.transitionDelay = `${i * 80}ms`;
-    fadeObserver.observe(el);
+  // Stat cards — pop in
+  document.querySelectorAll('.stat-card').forEach((el, i) => {
+    el.classList.add('anim', 'pop');
+    el.style.transitionDelay = `${i * 0.09}s`;
   });
-});
 
-// Hero text cascade
-document.querySelectorAll('.hero-eyebrow, .hero-text h1, .hero-sub, .hero-cta, .hero-badge').forEach((el, i) => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = `opacity 0.7s ease ${i * 0.12}s, transform 0.7s ease ${i * 0.12}s`;
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }, 100);
+  // Project cards — alternating left/right
+  document.querySelectorAll('.project-card').forEach((el, i) => {
+    el.classList.add('anim', i % 2 === 0 ? 'from-left' : 'from-right');
+    el.style.transitionDelay = `${i * 0.1}s`;
   });
-});
 
-// Cursor glow on project cards (desktop only)
+  // Exp blocks — bottom up with stagger
+  document.querySelectorAll('.exp-block').forEach((el, i) => {
+    el.classList.add('anim');
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+
+  // Contact cards — pop
+  document.querySelectorAll('.contact-card').forEach((el, i) => {
+    el.classList.add('anim', 'pop');
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+
+  // About text blocks
+  document.querySelectorAll('.about-text p').forEach((el, i) => {
+    el.classList.add('anim', 'from-left');
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+}
+
+// Intersection observer for all .anim elements
+function observeAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+}
+
+setupAnimations();
+// Short delay so hero cascade fires first, then observe everything else
+setTimeout(observeAnimations, 200);
+
+/* ---- CARD TILT EFFECT (desktop) ---- */
 if (window.matchMedia('(hover: hover)').matches) {
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `translateY(-8px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) scale(1.01)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
     });
   });
+}
+
+/* ---- TYPING CURSOR ON HERO TITLE ---- */
+const heroName = document.querySelector('.hero-text h1 .accent');
+if (heroName) {
+  heroName.style.borderRight = '3px solid transparent';
+  setTimeout(() => { heroName.style.borderRight = 'none'; }, 2000);
 }
