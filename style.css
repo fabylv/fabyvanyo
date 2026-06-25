@@ -519,6 +519,104 @@ ul { list-style: none; }
 .project-card.no-screenshot { display: flex; align-items: stretch; }
 .project-card.no-screenshot .project-body { justify-content: space-between; }
 
+/* Phone mockup card */
+.project-card--phone {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  overflow: visible;
+}
+
+.project-card--phone .project-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.phone-mockup {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.phone-frame {
+  width: 130px;
+  background: #1a1a2e;
+  border-radius: 28px;
+  border: 3px solid rgba(139,92,246,0.5);
+  box-shadow:
+    0 0 0 1px rgba(139,92,246,0.2),
+    0 20px 60px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+  padding: 14px 8px 10px;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover .phone-frame {
+  transform: translateY(-6px) rotate(1deg);
+  box-shadow:
+    0 0 0 1px rgba(167,139,250,0.4),
+    0 30px 70px rgba(139,92,246,0.3),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.phone-notch {
+  width: 40px;
+  height: 8px;
+  background: #0d0d18;
+  border-radius: 6px;
+  margin: 0 auto 8px;
+  position: relative;
+}
+
+.phone-notch::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(139,92,246,0.5);
+  right: 4px;
+  top: 1px;
+}
+
+.phone-screen {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 390/844;
+  width: 100%;
+}
+
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .phone-screen img { transform: scale(1.03); }
+
+.phone-home-bar {
+  width: 36px;
+  height: 4px;
+  background: rgba(139,92,246,0.4);
+  border-radius: 4px;
+  margin: 8px auto 0;
+}
+
+@media (max-width: 640px) {
+  .project-card--phone {
+    flex-direction: column;
+  }
+  .phone-frame { width: 110px; }
+}
+
 .project-icon {
   font-size: 2.6rem;
   margin-bottom: 20px;
