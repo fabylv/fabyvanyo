@@ -338,6 +338,11 @@ ul { list-style: none; }
   margin-bottom: 48px;
 }
 
+.section-title-bar.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section-title-bar.gold {
   background: linear-gradient(90deg, var(--gold), var(--pink-light));
 }
